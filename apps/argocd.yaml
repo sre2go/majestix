@@ -15,7 +15,6 @@ spec:
       - $values/apps/argocd.yaml
   - repoURL: https://argoproj.github.io/argo-helm
     targetRevision: main
-    path: apps/argocd.yaml
     ref: values
   destination:
     server: "https://kubernetes.default.svc"
