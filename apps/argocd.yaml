@@ -6,14 +6,14 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: https://argoproj.github.io/argo-helm
+  - repoURL: git@github.com:sre2go/majestix.git
     chart: argo-cd
     targetRevision: 6.11.1
     helm:
       releaseName: argocd
       valueFiles:
       - $values/apps/argocd.yaml
-  - repoURL: https://argoproj.github.io/argo-helm
+  - repoURL: git@github.com:sre2go/majestix.git
     targetRevision: main
     ref: values
   destination:
