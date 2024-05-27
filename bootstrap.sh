@@ -1,6 +1,7 @@
 #!/bin/bash
 
 GITREPO='git@github.com:sre2go/majestix.git'
+SSHPRIVATEKEY=$(cat ~/.ssh/id_rsa | base64)
 
 # Step 1: Install ArgoCD
 echo "Installing ArgoCD..."
@@ -26,7 +27,32 @@ echo "Logging in to ArgoCD..."
 echo "....skipped as no Ingress yet available"
 #argocd login --username admin --password $ARGOCD_PASSWORD --insecure --grpc-web $(kubectl -n argocd get svc argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
 
-# Step 6: Create the App-of-Apps manifest
+# Step 6: Create App-of-Apps Repository secret
+echo "Creating the App-of-Apps repo secret..."
+cat <<EOF > secret-app-of-apps.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: repo-app-of-apps
+  namespace: argocd
+type: Opaque
+data:
+  name: $(echo -n "app-of-apps" | base64)
+  project: $(echo -n "*" | base64)
+  sshPrivateKey: |
+$(echo "$SSHPRIVATEKEY" | sed 's/^/    /')
+  type: $(echo -n "git" | base64)
+  url: $(echo -n "$GITREPO" | base64)
+EOF
+
+kubectl apply -f secret-app-of-apps.yaml
+
+
+# Step 7: Create the App-of-Apps manifest
 echo "Creating the App-of-Apps manifest..."
 cat <<EOF > app-of-apps.yaml
 apiVersion: argoproj.io/v1alpha1
