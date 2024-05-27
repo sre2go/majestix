@@ -7,10 +7,10 @@ spec:
   project: default
   source:
     chart: argo-cd
-    repoURL: https://bitnami-labs.github.io/sealed-secrets
+    repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 6.11.1
     helm:
       releaseName: argocd
   destination:
-    server: "https://argoproj.github.io/argo-helm"
+    server: "https://kubernetes.default.svc"
     namespace: argocd
