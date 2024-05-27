@@ -68,7 +68,7 @@ spec:
   source:
     repoURL: '${GITREPO}'
     targetRevision: HEAD
-    path: '/apps'
+    path: 'apps'
   syncPolicy:
     automated:
       prune: true
