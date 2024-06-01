@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: git@github.com:sre2go/majestix.git
+  - repoURL: https://argoproj.github.io/argo-helm
     chart: argo-cd
-    targetRevision: 6.11.1
+    targetRevision: 7.1.0
     helm:
       releaseName: argocd
       valueFiles:
