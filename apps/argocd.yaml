@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: argocd
       valueFiles:
-      - $values/apps/argocd.yaml
+      - $values/helm/argocd-values.yaml
   - repoURL: git@github.com:sre2go/majestix.git
     targetRevision: main
     ref: values
