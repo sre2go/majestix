@@ -4,7 +4,7 @@ metadata:
   name: metallb
   namespace: argocd
 spec:
-  project: cluster
+  project: default
   sources:
   - repoURL: https://metallb.github.io/metallb
     chart: metallb-system
