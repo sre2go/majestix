@@ -7,7 +7,7 @@ spec:
   project: cluster
   sources:
   - repoURL: https://metallb.github.io/metallb
-    chart: metallb
+    chart: metallb-system
     targetRevision: 0.14.5
     helm:
       releaseName: metallb
