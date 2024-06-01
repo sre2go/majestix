@@ -11,14 +11,12 @@ spec:
     targetRevision: 0.14.5
     helm:
       releaseName: metallb
-      # valueFiles:
-      # - $values/apps/metallb.yaml
   - repoURL: git@github.com:sre2go/majestix.git
     targetRevision: main
     path: crds/metallb.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: metallb
+    namespace: metallb-system
   syncPolicy:
     automated:
       prune: true
